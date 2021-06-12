@@ -1,0 +1,3 @@
+[submodule "themes/vec"]
+	path = themes/vec
+	url = git@github.com:HongjiangHuang/hugo-theme-vec.git

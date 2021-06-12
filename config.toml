@@ -1,0 +1,27 @@
+baseurl = "https://albert.work4fun.io"
+title = "work for fun"
+theme = "vec"
+languageCode = "en-us"
+paginate = 10
+
+# Enable comments by entering your Disqus shortname
+# disqusShortname = "Your Disqus shortname"
+
+# Enable analytics by entering your Google Analytics tracking ID
+# googleAnalytics = "Your Google Analytics tracking code"
+
+[menu]
+  [[menu.main]]
+    name = "post"
+    weight = 0
+    url = "/posts"
+
+[params]
+  Keywords = "Rust, PHP, Golang, Kubernetes, Helm"
+  Description = "Documenting technology in bits and pieces"
+  
+  Avatar = "img/avatar.jpg"
+  SelfIntro = "Focus on efficiency, reduce ineffectiveness"
+  Email = "r.albert.huang@gmail.com"
+  
+  GithubID = "HongjiangHuang"
