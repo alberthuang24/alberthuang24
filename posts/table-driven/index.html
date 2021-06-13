@@ -1,0 +1,113 @@
+<!doctype html><html><head><title>让你的代码更可读之 Table-driven &#183; work for fun</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=generator content="Hugo 0.83.1"><link rel=stylesheet href=https://albert.work4fun.io/css/vec.css><link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/favicon.ico><link href rel=alternate type=application/rss+xml title="work for fun"></head><body><header><nav><ul><li class=pull-left><a href=https://albert.work4fun.io>/home/work for fun</a></li><li class=pull-left><a href=/posts>~/post</a></li><li class=pull-right><a href><i class="fas fa-rss"></i></a></li></ul></nav></header><div class="content wide"><section class=post><h1 class=post-title><a href=https://albert.work4fun.io/posts/table-driven/>让你的代码更可读之 Table-driven</a></h1><span class=post-date>Jun 24, 2015</span><div class=post-content><p>平时我们开发, 经常会遇到需要使用if, case的场景, 有时候阅读起来比较困难, 也不易于维护. 增加了修改的复杂性.</p><p>像比如我见过的有这样的.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getCdnAssetOrigin</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>isLocal</span>, <span style=color:#a6e22e>isDev</span>, <span style=color:#a6e22e>isPro</span>, <span style=color:#a6e22e>isDemo</span>, <span style=color:#a6e22e>isQa</span> }) =&gt; {
+  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>version</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>appVersion</span>;
+  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>cdnOrigin</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>;
+
+  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>isLocal</span>) {
+    <span style=color:#a6e22e>cdnOrigin</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>;
+  } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>isPro</span>) {
+    <span style=color:#a6e22e>cdnOrigin</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;//other.wkcoding.com/cm_www/pro/&#39;</span>;
+  } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>isDemo</span>) {
+    <span style=color:#a6e22e>cdnOrigin</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;//other.wkcoding.com/cm_www/demo/&#39;</span>;
+  } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>isDev</span>) {
+    <span style=color:#a6e22e>cdnOrigin</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;//other.wkcoding.com/cm_www/dev/&#39;</span>;
+  }
+
+  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>version</span>) {
+    <span style=color:#a6e22e>cdnOrigin</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>cdnOrigin</span><span style=color:#e6db74>}${</span><span style=color:#a6e22e>version</span><span style=color:#e6db74>}</span><span style=color:#e6db74>/`</span>;
+  }
+
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>cdnOrigin</span>;
+};
+</code></pre></div><p>还有这样的.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>$xun_fei_text_2_audio <span style=color:#f92672>=</span> <span style=color:#a6e22e>XunFeiText2AudioModule</span><span style=color:#f92672>::</span><span style=color:#a6e22e>instance</span>();
+<span style=color:#66d9ef>switch</span> ($type) {
+    <span style=color:#66d9ef>case</span> <span style=color:#a6e22e>XunFeiText2AudioModule</span><span style=color:#f92672>::</span><span style=color:#a6e22e>VOICE_NAME_LIST_TYPE</span>[<span style=color:#e6db74>&#39;all&#39;</span>]<span style=color:#f92672>:</span>
+        $voice_name_list <span style=color:#f92672>=</span> $xun_fei_text_2_audio<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getAllVoiceNames</span>();
+        <span style=color:#66d9ef>break</span>;
+    <span style=color:#66d9ef>case</span> <span style=color:#a6e22e>XunFeiText2AudioModule</span><span style=color:#f92672>::</span><span style=color:#a6e22e>VOICE_NAME_LIST_TYPE</span>[<span style=color:#e6db74>&#39;free&#39;</span>]<span style=color:#f92672>:</span>
+        $voice_name_list <span style=color:#f92672>=</span> $xun_fei_text_2_audio<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getFreeVoiceNames</span>();
+        <span style=color:#66d9ef>break</span>;
+    <span style=color:#66d9ef>case</span> <span style=color:#a6e22e>XunFeiText2AudioModule</span><span style=color:#f92672>::</span><span style=color:#a6e22e>VOICE_NAME_LIST_TYPE</span>[<span style=color:#e6db74>&#39;paid&#39;</span>]<span style=color:#f92672>:</span>
+        $voice_name_list <span style=color:#f92672>=</span> $xun_fei_text_2_audio<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>getPaidVoiceNames</span>();
+        <span style=color:#66d9ef>break</span>;
+    <span style=color:#66d9ef>default</span><span style=color:#f92672>:</span>
+        <span style=color:#66d9ef>return</span> $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>error</span>(<span style=color:#e6db74>&#39;发音人不存在&#39;</span>);
+}
+</code></pre></div><p>还有其他一些很复杂的情况, 上面只是列举最近我们团队在这两天code review发现的. 所以在这里我就不得不推荐使用一下 <a href=https://en.wikipedia.org/wiki/Code_Complete>《Code Complete》</a> 第185章所提到的 table-driven.</p><h3 id=关于-table-driven>关于 Table-driven</h3><p>Table-driven是在Code Complete书中关于逻辑控制优化里面被提及的. 大概意思就是指. 我们可以将逻辑控制中的condition 和 对应处理的logic. 转换成表（key -> handler）的形式.</p><p>比如:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>cdnOrigin</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>;
+
+<span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>isLocal</span>) {
+  <span style=color:#a6e22e>cdnOrigin</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>;
+} <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>isPro</span>) {
+  <span style=color:#a6e22e>cdnOrigin</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;//other.wkcoding.com/cm_www/pro/&#39;</span>;
+} <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>isDemo</span>) {
+  <span style=color:#a6e22e>cdnOrigin</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;//other.wkcoding.com/cm_www/demo/&#39;</span>;
+} <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>isDev</span>) {
+  <span style=color:#a6e22e>cdnOrigin</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;//other.wkcoding.com/cm_www/dev/&#39;</span>;
+}
+</code></pre></div><p>使用Table-driven后.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript>
+<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>cdnTable</span> <span style=color:#f92672>=</span> {
+    [<span style=color:#a6e22e>isLocal</span>]<span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;&#39;</span>,
+    [<span style=color:#a6e22e>isPro</span>]<span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;//other.wkcoding.com/cm_www/pro/&#39;</span>,
+    [<span style=color:#a6e22e>isDemo</span>]<span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;//other.wkcoding.com/cm_www/demo/&#39;</span>,
+    [<span style=color:#a6e22e>isDev</span>]<span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;//other.wkcoding.com/cm_www/dev/&#39;</span>
+}
+
+<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>cdnOrigin</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>cdnTable</span>[<span style=color:#66d9ef>true</span>];
+</code></pre></div><p>那么这么做的好处是什么呢. 其实显而易见的就是. 对修改更加友好了。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-diff data-lang=diff>
+let cdnTable = {
+    [isLocal]: &#39;&#39;,
+    [isPro]: &#39;//other.wkcoding.com/cm_www/pro/&#39;,
+    [isDemo]: &#39;//other.wkcoding.com/cm_www/demo/&#39;,
+<span style=color:#f92672>-    [isDev]: &#39;//other.wkcoding.com/cm_www/dev/&#39;,
+</span><span style=color:#f92672></span><span style=color:#a6e22e>+    [isX]: &#39;//other.wkcoding.com/cm_www/dev/&#39;
+</span><span style=color:#a6e22e></span>}
+
+if (isLocal) {
+  cdnOrigin = &#39;&#39;;
+} else if (isPro) {
+  cdnOrigin = &#39;//other.wkcoding.com/cm_www/pro/&#39;;
+<span style=color:#f92672>-} else if (isDemo) {
+</span><span style=color:#f92672>-  cdnOrigin = &#39;//other.wkcoding.com/cm_www/demo/&#39;;
+</span><span style=color:#f92672>-} 
+</span><span style=color:#f92672></span><span style=color:#a6e22e>+ } else if (isDev) {
+</span><span style=color:#a6e22e></span>  cdnOrigin = &#39;//other.wkcoding.com/cm_www/dev/&#39;;
+}
+</code></pre></div><p>在上面一个如此简单的例子中. Table-driven 删减对应逻辑, 或在中间增加对应逻辑的方式就很简. 增加一行. 就算是闭着眼睛也不会出错。</p><p>当然上面的例子还稍微有点简单. 我们大部分场景可见的还是这种场景</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>condition1</span>) {
+  <span style=color:#75715e>// logic 1 line
+</span><span style=color:#75715e></span>  <span style=color:#75715e>// logic 2 line
+</span><span style=color:#75715e></span>  <span style=color:#75715e>// logic 3 line
+</span><span style=color:#75715e></span>} <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>condition2</span>) {
+  <span style=color:#75715e>// logic 1 line
+</span><span style=color:#75715e></span>  <span style=color:#75715e>// logic 2 line
+</span><span style=color:#75715e></span>  <span style=color:#75715e>// logic 3 line
+</span><span style=color:#75715e></span>} <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>condition3</span>) {
+  <span style=color:#75715e>// logic 1 line
+</span><span style=color:#75715e></span>  <span style=color:#75715e>// logic 2 line
+</span><span style=color:#75715e></span>  <span style=color:#75715e>// logic 3 line
+</span><span style=color:#75715e></span>}
+
+<span style=color:#75715e>/// Table-driven:
+</span><span style=color:#75715e></span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>handleTable</span> <span style=color:#f92672>=</span> {
+    [<span style=color:#a6e22e>condition1</span>]<span style=color:#f92672>:</span> () =&gt; {
+
+    },
+    [<span style=color:#a6e22e>condition2</span>]<span style=color:#f92672>:</span> () =&gt; {
+
+    },
+    [<span style=color:#a6e22e>condition3</span>]<span style=color:#f92672>:</span> () =&gt; {
+
+    }
+}
+
+<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>handle</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>handleTable</span>[<span style=color:#a6e22e>condition</span>];
+
+<span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>handle</span>) {
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>handle</span>();
+}
+
+<span style=color:#75715e>// default logic
+</span></code></pre></div><h3 id=最后>最后</h3><p>对于Table-driven实际场景有很多地方可以运用. 相信大家在日常code review, 或者看别人源码的过程中都会看到只是之前不认识. 这里我就介绍到这里. 大家可以在实际场景中运用来更加深入了解</p><h3 id=reference>Reference</h3><ul><li><a href=https://www.d.umn.edu/~gshute/softeng/table-driven.html>https://www.d.umn.edu/~gshute/softeng/table-driven.html</a></li><li><a href=https://www.codeproject.com/Articles/42732/Table-driven-Approach>https://www.codeproject.com/Articles/42732/Table-driven-Approach</a></li><li><a href=https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B>https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B</a></li><li><a href=https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch09s01.html>https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch09s01.html</a></li></ul></div></section><section class="pagination clearfix"></section></div><footer><div class=footer-info><p><a href="mailto:r.albert.huang@gmail.com?subject="><i class="far fa-envelope"></i> r.albert.huang@gmail.com</a>
+{
+<a href=https://gohugo.io/ title="Hugo :: A fast and modern static website engine">Hugo 0.83.1</a>,
+<a href=https://github.com/IvanChou/yii.im title=vec>Vec</a>
+}
+{<a href=http://creativecommons.org/licenses/by-nc-nd/3.0/ title="CC BY-NC-ND 3.0">CC BY-NC-ND 3.0</a>}</p></div></footer><script src=https://albert.work4fun.io/js/highlight.min.js></script><script>hljs.initHighlightingOnLoad()</script></body></html>
