@@ -1,5 +1,5 @@
 baseurl = "https://albert.work4fun.io"
-title = "work for fun"
+title = "work4fun"
 theme = "vec"
 languageCode = "en-us"
 paginate = 10
@@ -15,6 +15,10 @@ paginate = 10
     name = "post"
     weight = 0
     url = "/posts"
+  [[menu.main]]
+    name = "about me"
+    weight = 0
+    url = "https://github.com/HongjiangHuang"
 
 [params]
   Keywords = "Rust, PHP, Golang, Kubernetes, Helm"

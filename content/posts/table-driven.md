@@ -1,10 +1,11 @@
-+++
-title = "让你的代码更可读之 Table-driven"
-date = "2015-06-24T13:50:46+02:00"
-tags = ["theme"]
-categories = ["starting"]
-banner = "img/banners/banner-1.jpg"
-+++
+---
+title: "让你的代码更可读之 Table-driven"
+date: "2015-06-24T13:50:46+02:00"
+tags: ["theme"]
+categories: ["starting"]
+banner: "img/banners/banner-1.jpg"
+---
+
 平时我们开发, 经常会遇到需要使用if, case的场景, 有时候阅读起来比较困难, 也不易于维护. 增加了修改的复杂性.
 
 像比如我见过的有这样的.
