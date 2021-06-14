@@ -17,7 +17,7 @@ Email: r.albert.huang@gmail.com
 
 ### 2021 Goals
 
-由于我希望大部分碎片时间可以携带 IPAD Pro 来完成学习和工作。
+由于我希望大部分碎片时间可以携带 iPad Pro 来完成学习和工作。
 
 所以我正在为这个目标学习swift-ui来开发 kube-swift 和 shell-keyboard 来满足日常的运维勘查工作。
 
