@@ -16,3 +16,5 @@ Email: r.albert.huang@gmail.com
 所以我正在为这个目标学习swift-ui来开发 kube-swift 和 shell-keyboard 来满足日常的运维勘查工作。
 
 希望今年能产出第一个 alpha 版本!
+
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=HongjiangHuang&show_icons=true&theme=radical)
