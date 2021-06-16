@@ -1,5 +1,5 @@
 ---
-title: "Shell"
+title: "一起来学 Shell 吧"
 date: 2020-06-16T22:17:51+08:00
 tags: ["theme"]
 categories: ["starting"]
