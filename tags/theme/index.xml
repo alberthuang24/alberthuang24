@@ -1,4 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>theme on work4fun</title><link>https://albert.work4fun.io/tags/theme/</link><description>Recent content in theme on work4fun</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 16 Jun 2020 22:17:51 +0800</lastBuildDate><atom:link href="https://albert.work4fun.io/tags/theme/index.xml" rel="self" type="application/rss+xml"/><item><title>Shell</title><link>https://albert.work4fun.io/posts/shell/</link><pubDate>Tue, 16 Jun 2020 22:17:51 +0800</pubDate><guid>https://albert.work4fun.io/posts/shell/</guid><description>我们现在大部分开发现在都是使用macos进行开发. macos由于是基于Unix系统开发的. 所以系统本身很好的支持了bash.（虽然不同系统下有些地方有些差异）. 这就使我们可以很方便的使用shell来优化我们的工作效率.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>theme on work4fun</title><link>https://albert.work4fun.io/tags/theme/</link><description>Recent content in theme on work4fun</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 16 Jun 2021 22:24:34 +0800</lastBuildDate><atom:link href="https://albert.work4fun.io/tags/theme/index.xml" rel="self" type="application/rss+xml"/><item><title>聊聊 “协程” Coroutine</title><link>https://albert.work4fun.io/posts/coroutine/</link><pubDate>Wed, 16 Jun 2021 22:24:34 +0800</pubDate><guid>https://albert.work4fun.io/posts/coroutine/</guid><description>最近问团队的小伙伴希望我写一些什么类型的文章给团队内学习的时候. 有人提到了golang的协程(因为现在很多小伙伴可能是php+golang).
+在聊协程之前, 我们还是得先聊聊 并行(parallel) 跟 并发(concurrent). 那么什么是并发计算呢?
+我们用gif图来解释. 方块变成紫色就表示cpu在处理一个子程序. 当我们的程序没有并发的时候. 它像这样. 每一秒只有当一个方块变成紫色后
+另一个方块才能变成紫色. 就如同我们的CPU在单核的时候. 同一个时刻. 只能运行一个子程序. 这个时候我们会觉得. 程序好像很卡的样子. 每个方块等待的时间都很长.
+这就是串行执行。
+然后呢, 我们调整我们的程序. 让每一个方块在亮一刻之后. 将亮的权力交接给另一个方块. 两个不断的让出权力. 使我们觉得CPU好像可以同时把两个方块点亮.
+这就是并发执行. 当然, 现实的计算机例子实现并发细节还有很多, 这里只是用简单的模型让大家理解
+那么什么是并行呢, 现在的CPU大部分都是双核, 四核, 或者八核. 那前面我们也说了.
+我们的CPU在单核的时候. 同一个时刻. 只能运行一个子程序.
+所以当我们的CPU只有单核的时候, 我的理解是. 不存在并行执行. 那当我们的CPU是双核的时候. 我们就可以像下面的gif图一样. 每次可以亮起两个紫色方块。(截图就可以看到了)
+这个就是并行执行。
+ok, 大概理解了 并行(parallel) 跟 并发(concurrent) 后. 我们就可以聊聊. 我们今天讨论的主角. &amp;quot;协程&amp;quot; 了。
+协程的概念很早就提出来了，但火起来, 我记得是因为golang火导致的. 其实golang中的goroutine跟很多语言里面的协程, 比如 php，javascript(新版v8引擎) 等这些语言的协程都不太一样. 所以golang的协程叫goroutine, 而不是 coroutine. 很多文章阐述 coroutine 跟 goroutine 的区别我个人觉得都不太正确.</description></item><item><title>Shell</title><link>https://albert.work4fun.io/posts/shell/</link><pubDate>Tue, 16 Jun 2020 22:17:51 +0800</pubDate><guid>https://albert.work4fun.io/posts/shell/</guid><description>我们现在大部分开发现在都是使用macos进行开发. macos由于是基于Unix系统开发的. 所以系统本身很好的支持了bash.（虽然不同系统下有些地方有些差异）. 这就使我们可以很方便的使用shell来优化我们的工作效率.
 sh, bash, zsh, fish 是什么, 有什么区别 我个人的理解呢, 是这样的. 他们都属于shell, 但是他们所支持的语法糖跟一些高级特性, 比如命令补全. 这些不一样.
 其中比较流行的就是bash. 所以我们在看到shell脚本基本都能看到一行 #!/bin/bash. 用来指定此脚本使用特定的sh来执行
 我个人平时办公最常用的是zsh. 当然我推荐新手也用这个. 这个对于学习跟办公来说效率是最高的.
