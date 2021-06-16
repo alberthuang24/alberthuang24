@@ -1,0 +1,84 @@
+<!doctype html><html><head><title>Shell &#183; work4fun</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=generator content="Hugo 0.83.1"><link rel=stylesheet href=https://albert.work4fun.io/css/vec.css><link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/favicon.ico><link href rel=alternate type=application/rss+xml title=work4fun></head><body><header><nav><ul><li class=pull-left><a href=https://albert.work4fun.io>/home/work4fun</a></li><li class=pull-left><a href=https://github.com/HongjiangHuang>~/about me</a></li><li class=pull-left><a href=/posts>~/post</a></li><li class=pull-right><a href><i class="fas fa-rss"></i></a></li></ul></nav></header><div class="content wide"><section class=post><h1 class=post-title><a href=https://albert.work4fun.io/posts/shell/>Shell</a></h1><span class=post-date>Jun 16, 2020</span><div class=post-content><p>我们现在大部分开发现在都是使用macos进行开发. macos由于是基于Unix系统开发的. 所以系统本身很好的支持了bash.（虽然不同系统下有些地方有些差异）. 这就使我们可以很方便的使用shell来优化我们的工作效率.</p><h3 id=sh-bash-zsh-fish-是什么-有什么区别>sh, bash, zsh, fish 是什么, 有什么区别</h3><p>我个人的理解呢, 是这样的. 他们都属于shell, 但是他们所支持的语法糖跟一些高级特性, 比如命令补全. 这些不一样.</p><p>其中比较流行的就是bash. 所以我们在看到shell脚本基本都能看到一行 <code>#!/bin/bash</code>. 用来指定此脚本使用特定的sh来执行</p><p>我个人平时办公最常用的是<code>zsh</code>. 当然我推荐新手也用这个. 这个对于学习跟办公来说效率是最高的.</p><p>其中 <code>sh</code> 的大小是最小的. 所以大部分linux发行版本内置都是 <code>sh</code>.</p><p>如下我们可以看到. 除了 <code>sh</code> 才 31k . 其他外壳的sh都是几百k.</p><p>除了写一些嵌入式的时候需要考虑有限的存储跟内存用选用比较小的sh以外. 像我平时在公司的dockerfile都会特意安装一个bash</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ls -lh /bin/  | grep sh
+-r-xr-xr-x  <span style=color:#ae81ff>1</span> root  wheel   609K Aug <span style=color:#ae81ff>11</span> 04:56 bash
+-rwxr-xr-x  <span style=color:#ae81ff>1</span> root  wheel   517K Aug <span style=color:#ae81ff>11</span> 04:56 csh
+-rwxr-xr-x  <span style=color:#ae81ff>1</span> root  wheel   108K Aug <span style=color:#ae81ff>11</span> 04:56 dash
+-r-xr-xr-x  <span style=color:#ae81ff>1</span> root  wheel   1.2M Aug <span style=color:#ae81ff>11</span> 04:56 ksh
+-rwxr-xr-x  <span style=color:#ae81ff>1</span> root  wheel    31K Aug <span style=color:#ae81ff>11</span> 04:56 sh
+-rwxr-xr-x  <span style=color:#ae81ff>1</span> root  wheel   517K Aug <span style=color:#ae81ff>11</span> 04:56 tcsh
+-rwxr-xr-x  <span style=color:#ae81ff>1</span> root  wheel   623K Aug <span style=color:#ae81ff>11</span> 04:56 zsh
+</code></pre></div><h3 id=内置变量>内置变量</h3><p>shell跟大部分编程语言一样. 都有一些内置变量提供给开发者. 以方便实现某些功能. 由于内置变量特别多. 这里就说几个特别重要的</p><h3 id=heading><code>$?</code></h3><p>这个内置变量特别重要. 它指的是当前 terminal 最后一次运行都错误码. 除了0表示正常, 其余错误码都是对应程序有错误.</p><p>这也是写C 或者 一些CLI 工具的时候. 需要 <code>return 0</code> 或者 <code>exit(0);</code> 的原因. 这个变量存在的目的主要是方便程序和程序之间的通信.</p><p>比如做devops的时候. CI 需要知道当前pipeline是否执行成功. 就是使用的这个变量.</p><p>还有我们经常会看到这样的sh脚本</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ls -lh /bin/  | grep sh | awk <span style=color:#e6db74>&#39;{print $9}&#39;</span> | xargs echo
+</code></pre></div><p>linux 管道使每个单一指责的命令工具很灵活的组合起来. 每次记录最后运行是否成功这个状态. 使每一个task 都能够在上一个task正常的执行完后再执行.</p><h3 id=-ppid><code>$$</code>, <code>$PPID</code></h3><p><code>$$</code> 很容易理解. 就是获取当前脚本运行的pid.</p><p><code>$PPID</code> 就可以获取当前脚本的父级的pid. 如果当前是子任务的话.</p><h3 id=pwd-home><code>$PWD</code>, <code>$HOME</code></h3><p><code>$PWD</code> 可以获取当前所在目录</p><p><code>$HOME</code> 则是获取根目录</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>➜ ~ echo $HOME
+/Users/albert
+➜  ~ echo $PWD
+/Users/albert
+</code></pre></div><h3 id=-0-number><code>$@</code>, <code>$0</code>, <code>$number</code></h3><p><code>$@</code> 可以理解为 js 中的arguments.相当于获取当前脚本所有的参数.</p><p>例如:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ls <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>3</span> <span style=color:#ae81ff>4</span>
+</code></pre></div><p>则 <code>$@</code> 就表示 <code>1 2 3 4</code></p><p><code>$0</code> 表示当前脚本名. 这里要注意的是. 我们调用脚本时使用的是什么路径. 这里就是什么路径</p><p>例如:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>➜ bash ./1.sh
+./1.sh
+➜ bash <span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span>/1.sh
+/Users/albert/code/CodingMonkey/1.sh
+</code></pre></div><p><code>$number</code> 指的是 <code>$1, $2, $3 ... $n</code>. 这里指的就是脚本传入第n个参数.</p><h3 id=声明变量>声明变量</h3><p>像所有其他编程语言一样，Bash 支持变量。这里说一下shell变量要注意的地方</p><p>变量赋值的语法非常严格，等号（=）两边不能有空格</p><p>像这样声明是会报语法错误的</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e>#!/bin/bash
+</span><span style=color:#75715e></span>name <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Albert&#34;</span>
+echo $name
+</code></pre></div><p>正确的声明姿势</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e>#!/bin/bash
+</span><span style=color:#75715e></span>name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Albert&#34;</span>
+echo $name
+</code></pre></div><h3 id=流程控制-ifelse>流程控制 (if/else)</h3><p>shell的if else也是需要特别注意的. 细讲的话一篇文章都讲不完. 所以这里只挑常用的场景讲.</p><p>首先上示例</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#66d9ef>if</span> <span style=color:#f92672>[[</span> $VAR -gt <span style=color:#ae81ff>10</span> <span style=color:#f92672>]]</span>
+<span style=color:#66d9ef>then</span>
+  echo <span style=color:#e6db74>&#34;The variable is greater than 10.&#34;</span>
+<span style=color:#66d9ef>elif</span> <span style=color:#f92672>[[</span> $VAR -eq <span style=color:#ae81ff>10</span> <span style=color:#f92672>]]</span>
+<span style=color:#66d9ef>then</span>
+  echo <span style=color:#e6db74>&#34;The variable is equal to 10.&#34;</span>
+<span style=color:#66d9ef>else</span>
+  echo <span style=color:#e6db74>&#34;The variable is less than 10.&#34;</span>
+<span style=color:#66d9ef>fi</span>
+</code></pre></div><p>其实也就是</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#66d9ef>if</span> <span style=color:#f92672>[[</span> condition <span style=color:#f92672>]]</span>
+<span style=color:#66d9ef>then</span>
+   <span style=color:#75715e># logic</span>
+<span style=color:#66d9ef>elif</span> <span style=color:#f92672>[[</span> condition <span style=color:#f92672>]]</span>
+<span style=color:#66d9ef>then</span>
+   <span style=color:#75715e># logic</span>
+<span style=color:#66d9ef>fi</span>
+</code></pre></div><p>只不过 <code>condition</code> 需要特别注意的是. 不像我们熟悉的<code>javascript</code>, 或者 <code>php</code> 一样. 可以写 <code>></code>, <code>=</code> 对应支持的 <code>condition</code> 我上一个列表</p><ul><li><code>-n VAR</code> - Var的长度是否不为0. 也可以理解成变量不为空</li><li><code>-z VAR</code> - VAR变量是否为空.</li><li><code>STRING1 = STRING2</code> - STRING1 是否等于STRING2</li><li><code>STRING1 != STRING2</code> - STRING1 是否不等于STRING2</li><li><code>INTEGER1 -eq INTEGER2</code> - 一样也是用于判断是否相等的. 不同的是这个是用于int类型</li><li><code>INTEGER1 -gt INTEGER2</code> - 用于int类型判断是否不相等</li><li><code>INTEGER1 -lt INTEGER2</code> - 相当于 <code>INTEGER1 &lt; INTEGER2</code></li><li><code>INTEGER1 -ge INTEGER2</code> - 相当于 <code>INTEGER1 >= INTEGER2</code></li><li><code>INTEGER1 -le INTEGER2</code> - 相当于 <code>INTEGER1 &lt;= INTEGER2</code></li><li><code>-h FILE</code> - 文件存在并且文件是符号链接</li><li><code>-r FILE</code> - 文件是否可读</li><li><code>-w FILE</code> - 文件是否可写</li><li><code>-x FILE</code> - 文件是否可执行</li><li><code>-d FILE</code> - 是否是一个目录</li><li><code>-e FILE</code> - 是否是一个文件</li><li><code>-f FILE</code> - 这个也是是否是文件. 跟 <code>-e</code> 的区别是. linux 里面很多东西都是用文件来描述的. 比如网卡. socket. 而 <code>-e</code> 就是这些文件. 都属于文件. <code>-f</code> 则排除了这些特殊文件类型. 大部分情况下用 <code>-f</code> 比较多. 那比如你写一个脚本去检查本地mysql服务有没有启动. 因为有时候 mysql 会使用本地 unix 协议来启动服务. 这时候就得用 <code>-e</code></li></ul><p>上面列举了这么多。我们来写几个常用的场景</p><p>判断是否有参数</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e>#!/bin/bash
+</span><span style=color:#75715e></span>
+env<span style=color:#f92672>=</span><span style=color:#e6db74>${</span>1<span style=color:#66d9ef>:-</span><span style=color:#e6db74>&#34;&#34;</span><span style=color:#e6db74>}</span>
+
+<span style=color:#66d9ef>if</span> <span style=color:#f92672>[[</span> -z <span style=color:#e6db74>&#34;</span>$env<span style=color:#e6db74>&#34;</span> <span style=color:#f92672>]]</span>; <span style=color:#66d9ef>then</span>
+    echo -n <span style=color:#e6db74>&#34;发布环境(rc|pro):&#34;</span>
+    read -r env
+<span style=color:#66d9ef>fi</span>
+</code></pre></div><p>检测本地是否有安装docker</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># detect docker</span>
+<span style=color:#66d9ef>if</span> ! <span style=color:#f92672>[</span> -x <span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>command -v docker<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span> <span style=color:#f92672>]</span>; <span style=color:#66d9ef>then</span>
+  <span style=color:#75715e># auto install docker</span>
+  <span style=color:#75715e># eq macos</span>
+  <span style=color:#66d9ef>if</span> <span style=color:#f92672>[</span> <span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>uname<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;Darwin&#34;</span> <span style=color:#f92672>]</span>;<span style=color:#66d9ef>then</span>
+    wget https://download.docker.com/mac/stable/Docker.dmg -O <span style=color:#e6db74>&#34;</span>$HOME<span style=color:#e6db74>/Downloads/docker.dmg&#34;</span>;
+    open <span style=color:#e6db74>&#34;</span>$HOME<span style=color:#e6db74>/Downloads/docker.dmg&#34;</span>;
+    echo <span style=color:#e6db74>&#34;Please install docker and retry&#34;</span>;
+    exit;
+  <span style=color:#66d9ef>else</span>
+    curl -sSL https://get.docker.com | sh
+  <span style=color:#66d9ef>fi</span>
+<span style=color:#66d9ef>fi</span>
+</code></pre></div><p>这里检测是否有安装docker其实就是通过 <code>command</code> 获取来docker的路径后. 通过判断对应路径是否可执行来实现的. 对应我们上面condition列表的 <code>-x FILE</code></p><h3 id=循环控制-loop>循环控制 loop</h3><p>shell 我们最常用的就是 <code>for</code> 循环</p><p>无限循环</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#66d9ef>for</span> <span style=color:#f92672>((</span> ; ; <span style=color:#f92672>))</span>
+<span style=color:#66d9ef>do</span>
+   echo <span style=color:#e6db74>&#34;无限循环 [ CTRL+C 停止]&#34;</span>
+<span style=color:#66d9ef>done</span>
+</code></pre></div><p><code>for in</code></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#66d9ef>for</span> i in <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>3</span> <span style=color:#ae81ff>4</span> <span style=color:#ae81ff>5</span> <span style=color:#ae81ff>6</span>
+<span style=color:#66d9ef>do</span>
+   echo $i
+<span style=color:#66d9ef>done</span>
+</code></pre></div><p>实际举例 - 获取所有html文件</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e>#!/bin/bash
+</span><span style=color:#75715e></span><span style=color:#66d9ef>for</span> html in <span style=color:#66d9ef>$(</span>find <span style=color:#e6db74>&#34;</span>$BUILDOUT_DIR<span style=color:#e6db74>&#34;</span> -type f -name <span style=color:#e6db74>&#34;*.html&#34;</span><span style=color:#66d9ef>)</span>
+<span style=color:#66d9ef>do</span>
+    <span style=color:#75715e># logic</span>
+<span style=color:#66d9ef>done</span>
+</code></pre></div><p>执行id 100-300的任务</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#66d9ef>for</span> id in <span style=color:#f92672>{</span>100...300<span style=color:#f92672>}</span>
+<span style=color:#66d9ef>do</span>
+    php cmcli jobs:run $i
+<span style=color:#66d9ef>done</span>
+</code></pre></div><h3 id=reference>Reference</h3><ul><li><a href=https://zh.wikipedia.org/wiki/Bash>https://zh.wikipedia.org/wiki/Bash</a></li><li><a href=https://man.linuxde.net/find-2>https://man.linuxde.net/find-2</a></li><li><a href=https://www.shellcheck.net/>https://www.shellcheck.net/</a></li><li><a href=https://opensource.com/business/16/3/top-linux-shells>https://opensource.com/business/16/3/top-linux-shells</a></li><li><a href=https://linuxize.com/post/bash-if-else-statement/>https://linuxize.com/post/bash-if-else-statement/</a></li></ul></div></section><section class="pagination clearfix"><a class="btn previous" href=https://albert.work4fun.io/posts/table-driven/>让你的代码更可读之 Table-driven</a></section></div><footer><div class=footer-info><p><a href="mailto:r.albert.huang@gmail.com?subject="><i class="far fa-envelope"></i> r.albert.huang@gmail.com</a>
+{
+<a href=https://gohugo.io/ title="Hugo :: A fast and modern static website engine">Hugo 0.83.1</a>,
+<a href=https://github.com/IvanChou/yii.im title=vec>Vec</a>
+}
+{<a href=http://creativecommons.org/licenses/by-nc-nd/3.0/ title="CC BY-NC-ND 3.0">CC BY-NC-ND 3.0</a>}</p></div></footer><script src=https://albert.work4fun.io/js/highlight.min.js></script><script>hljs.initHighlightingOnLoad()</script></body></html>
