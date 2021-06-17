@@ -10,7 +10,7 @@
 所以当我们的CPU只有单核的时候, 我的理解是. 不存在并行执行. 那当我们的CPU是双核的时候. 我们就可以像下面的gif图一样. 每次可以亮起两个紫色方块。(截图就可以看到了)
 这个就是并行执行。
 ok, 大概理解了 并行(parallel) 跟 并发(concurrent) 后. 我们就可以聊聊. 我们今天讨论的主角. &amp;quot;协程&amp;quot; 了。
-协程的概念很早就提出来了，但火起来, 我记得是因为golang火导致的. 其实golang中的goroutine跟很多语言里面的协程, 比如 php，javascript(新版v8引擎) 等这些语言的协程都不太一样. 所以golang的协程叫goroutine, 而不是 coroutine. 很多文章阐述 coroutine 跟 goroutine 的区别我个人觉得都不太正确.</description></item><item><title>一起来学 Shell 吧</title><link>https://albert.work4fun.io/posts/let-lean-shell/</link><pubDate>Tue, 16 Jun 2020 22:17:51 +0800</pubDate><guid>https://albert.work4fun.io/posts/let-lean-shell/</guid><description>我们现在大部分开发现在都是使用macos进行开发. macos由于是基于Unix系统开发的. 所以系统本身很好的支持了bash.（虽然不同系统下有些地方有些差异）. 这就使我们可以很方便的使用shell来优化我们的工作效率.
+协程的概念很早就提出来了，但火起来, 我记得是因为golang火导致的. 其实golang中的goroutine跟很多语言里面的协程, 比如 php，javascript(新版v8引擎) 等这些语言的协程都不太一样. 所以golang的协程叫goroutine, 而不是 coroutine. 很多文章阐述 coroutine 跟 goroutine 的区别我个人觉得都不太正确.</description></item><item><title>一起来学 Shell 吧</title><link>https://albert.work4fun.io/posts/let-lean-shell/</link><pubDate>Tue, 16 Jun 2020 22:17:51 +0800</pubDate><guid>https://albert.work4fun.io/posts/let-lean-shell/</guid><description>it 我们现在大部分开发现在都是使用macos进行开发. macos由于是基于Unix系统开发的. 所以系统本身很好的支持了bash.（虽然不同系统下有些地方有些差异）. 这就使我们可以很方便的使用shell来优化我们的工作效率.
 sh, bash, zsh, fish 是什么, 有什么区别 我个人的理解呢, 是这样的. 他们都属于shell, 但是他们所支持的语法糖跟一些高级特性, 比如命令补全. 这些不一样.
 其中比较流行的就是bash. 所以我们在看到shell脚本基本都能看到一行 #!/bin/bash. 用来指定此脚本使用特定的sh来执行
 我个人平时办公最常用的是zsh. 当然我推荐新手也用这个. 这个对于学习跟办公来说效率是最高的.
