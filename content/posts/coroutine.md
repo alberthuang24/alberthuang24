@@ -66,7 +66,7 @@ func main() {
 }
 
 // terminal output
-➜  blog_temp go run ./test.go
+➜ go run ./test.go
 1
 0
 2
@@ -120,7 +120,7 @@ func main() {
 }
 
 // terminal output
-➜  blog_temp go run ./test.go
+➜ go run ./test.go
 0
 1
 2
