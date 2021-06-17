@@ -5,7 +5,7 @@ tags: ["theme"]
 categories: ["starting"]
 banner: "img/banners/banner-1.jpg"
 ---
-
+it 
 我们现在大部分开发现在都是使用macos进行开发. macos由于是基于Unix系统开发的. 所以系统本身很好的支持了bash.（虽然不同系统下有些地方有些差异）. 这就使我们可以很方便的使用shell来优化我们的工作效率. 
 
 ### sh, bash, zsh, fish 是什么, 有什么区别

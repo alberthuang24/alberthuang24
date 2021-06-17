@@ -16,6 +16,10 @@ paginate = 10
     weight = 0
     url = "/posts"
   [[menu.main]]
+    name = "snippet"
+    weight = 0
+    url = "/snippet"
+  [[menu.main]]
     name = "about me"
     weight = 0
     url = "https://github.com/HongjiangHuang"
