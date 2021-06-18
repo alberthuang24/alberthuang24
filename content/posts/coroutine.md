@@ -4,6 +4,7 @@ date: 2021-06-16T22:24:34+08:00
 tags: ["theme"]
 categories: ["starting"]
 banner: "img/banners/banner-1.jpg"
+comments: true
 ---
 
 > 最近问团队的小伙伴希望我写一些什么类型的文章给团队内学习的时候. 有人提到了golang的协程(因为现在很多小伙伴可能是php+golang).

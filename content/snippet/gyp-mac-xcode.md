@@ -4,6 +4,7 @@ date: "2021-06-17T13:50:46+02:00"
 tags: ["theme"]
 categories: ["starting"]
 banner: "img/banners/banner-1.jpg"
+comments: true
 ---
 
 Oops...今天又遇到 gyp 报错了.. 记得明明安装过 xcode-tools..

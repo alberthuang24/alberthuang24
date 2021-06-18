@@ -5,7 +5,7 @@ languageCode = "en-us"
 paginate = 10
 
 # Enable comments by entering your Disqus shortname
-# disqusShortname = "Your Disqus shortname"
+disqusShortname = "work4fun"
 
 # Enable analytics by entering your Google Analytics tracking ID
 # googleAnalytics = "Your Google Analytics tracking code"
@@ -27,6 +27,7 @@ paginate = 10
 [params]
   Keywords = "Rust, PHP, Golang, Kubernetes, Helm"
   Description = "Documenting technology in bits and pieces"
+  comments = 1
   
   Avatar = "img/avatar.jpg"
   SelfIntro = "注重效率, 脚踏实地"

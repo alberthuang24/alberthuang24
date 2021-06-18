@@ -4,6 +4,7 @@ date: "2015-06-24T13:50:46+02:00"
 tags: ["theme"]
 categories: ["starting"]
 banner: "img/banners/banner-1.jpg"
+comments: true
 ---
 
 平时我们开发, 经常会遇到需要使用if, case的场景, 有时候阅读起来比较困难, 也不易于维护. 增加了修改的复杂性.
