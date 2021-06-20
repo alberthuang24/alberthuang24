@@ -20,6 +20,10 @@ disqusShortname = "work4fun123"
     weight = 0
     url = "/snippet"
   [[menu.main]]
+    name = "swift-ui"
+    weight = 0
+    url = "/swift-ui-WeSplit"
+  [[menu.main]]
     name = "about me"
     weight = 0
     url = "https://github.com/HongjiangHuang"
