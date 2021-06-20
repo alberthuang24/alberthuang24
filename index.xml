@@ -2,7 +2,7 @@
 我感觉我不搞明白这些原理我没法很快的将英语学的比较好。
 就比如我在读这段话的时候我心里挺别扭的。
 Make sure all the checkboxes at the bottom are not checked. 确认所有的复选框在底部是未选中的... egg... 当然我全部读完后心中重新组织一遍会知道正确的应该是
-确认在底部的所有复选框都没有被选中... 但是我心中很别扭。因为每句话我都需要全部读完后在内心重新组织一遍。</description></item><item><title>WeSplit: 了解基本的SwiftUI结构</title><link>https://albert.work4fun.io/swift-ui-wesplit/%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/</link><pubDate>Sat, 19 Jun 2021 18:00:21 +0800</pubDate><guid>https://albert.work4fun.io/swift-ui-wesplit/%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/</guid><description>当你创建了一个 SwiftUI 应用, 你将得到一个一些文件，也许有 100 多行代码。
+确认在底部的所有复选框都没有被选中... 但是我心中很别扭。因为每句话我都需要全部读完后在内心重新组织一遍。</description></item><item><title>WeSplit: 了解基本的SwiftUI结构</title><link>https://albert.work4fun.io/swift-ui-wesplit/2%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/</link><pubDate>Sat, 19 Jun 2021 18:00:21 +0800</pubDate><guid>https://albert.work4fun.io/swift-ui-wesplit/2%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/</guid><description>当你创建了一个 SwiftUI 应用, 你将得到一个一些文件，也许有 100 多行代码。
 大部分代码没有什么作用，只是作为占位符给你填一些东西 - 现在你可以暂时忽略它们，但是后面的课程会需要使用到他们。
 你可以在 Xcode 左边栏看到一些文件，这叫项目导航栏：
 AppDelegate.swift 包含管理应用程序的代码，以前经常会在这里添加代码，但是现在很少。 SceneDelegate.swift 还有应用启动窗口的代码，这些在 iPhone 没什么用，但是在 iPad - 哪些用户可以在任意时间拥有多个实例 - 这很重要 ContentView.swift 包含你的程序最初始的用户界面，这也是我们将在这个项目做的所有工作。 Assets.xcassets 是一个资源目录 - 你想在这个程序使用的图片集合。你也可以在这里添加颜色，应用的 icons，iMessage 的贴纸，以及更多。 LaunchScreen.storyboard 是一个创建应用启动界面的视图编辑器。 Info.plist 是一个关注你的应用如何在系统工作的特殊值集合 - 当前应用是哪个版本，支持哪些设备方向，以及更多。 这些不是代码，但是很重要。 Preview Content 是一个内部使用 Preview Assets.xcassets 单独资源目录，这里专门给您存放想要设计用户界面时的示例图片，让你看看程序运行时候的样子。 我们在这里项目的所有工作都将在 ContentView.swift 进行，其中 Xcode 将已经打开给你。
@@ -21,7 +21,7 @@ No receipt for &amp;#39;com.apple.pkg.CLTools_Executables&amp;#39; found at &amp
 所以当我们的CPU只有单核的时候, 我的理解是. 不存在并行执行. 那当我们的CPU是双核的时候. 我们就可以像下面的gif图一样. 每次可以亮起两个紫色方块。(截图就可以看到了)
 这个就是并行执行。
 ok, 大概理解了 并行(parallel) 跟 并发(concurrent) 后. 我们就可以聊聊. 我们今天讨论的主角. &amp;quot;协程&amp;quot; 了。
-协程的概念很早就提出来了，但火起来, 我记得是因为golang火导致的. 其实golang中的goroutine跟很多语言里面的协程, 比如 php，javascript(新版v8引擎) 等这些语言的协程都不太一样. 所以golang的协程叫goroutine, 而不是 coroutine. 很多文章阐述 coroutine 跟 goroutine 的区别我个人觉得都不太正确.</description></item><item><title>WeSplit: 项目简介</title><link>https://albert.work4fun.io/swift-ui-wesplit/%E7%AE%80%E4%BB%8B/</link><pubDate>Wed, 16 Jun 2021 18:00:21 +0800</pubDate><guid>https://albert.work4fun.io/swift-ui-wesplit/%E7%AE%80%E4%BB%8B/</guid><description>在这个项目中，我们将构建一个用于在餐厅吃饭的费用确认 app。 你可以输入你的食材成本，选择你想给多少小费，以及多少人用餐， app将告诉你每个人需要AA多少钱。
+协程的概念很早就提出来了，但火起来, 我记得是因为golang火导致的. 其实golang中的goroutine跟很多语言里面的协程, 比如 php，javascript(新版v8引擎) 等这些语言的协程都不太一样. 所以golang的协程叫goroutine, 而不是 coroutine. 很多文章阐述 coroutine 跟 goroutine 的区别我个人觉得都不太正确.</description></item><item><title>WeSplit: 项目简介</title><link>https://albert.work4fun.io/swift-ui-wesplit/1%E7%AE%80%E4%BB%8B/</link><pubDate>Wed, 16 Jun 2021 18:00:21 +0800</pubDate><guid>https://albert.work4fun.io/swift-ui-wesplit/1%E7%AE%80%E4%BB%8B/</guid><description>在这个项目中，我们将构建一个用于在餐厅吃饭的费用确认 app。 你可以输入你的食材成本，选择你想给多少小费，以及多少人用餐， app将告诉你每个人需要AA多少钱。
 这个项目不是尝试构建一个复杂的东西，因为它的真实目的是, 在一个真实世界项目中以有用的方式教你基本的SwiftUI, 如果你想进更进一步, 你可以扩展。
 你将学习基础的UI设计，如何让用户输入一个值以及选择一个选项， 并且如何跟踪程序状态。
 由于这是第一个项目，我们将顺利的慢慢进行，并且解释发生的一切 - 后面的项目将慢慢的增加速度， 但是现在我们需要轻松一点。
