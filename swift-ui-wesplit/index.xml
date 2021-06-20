@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Swift-ui-WeSplits on work4fun</title><link>https://albert.work4fun.io/swift-ui-wesplit/</link><description>Recent content in Swift-ui-WeSplits on work4fun</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 16 Jun 2021 18:00:21 +0800</lastBuildDate><atom:link href="https://albert.work4fun.io/swift-ui-wesplit/index.xml" rel="self" type="application/rss+xml"/><item><title>WeSplit: 项目简介</title><link>https://albert.work4fun.io/swift-ui-wesplit/%E7%AE%80%E4%BB%8B/</link><pubDate>Wed, 16 Jun 2021 18:00:21 +0800</pubDate><guid>https://albert.work4fun.io/swift-ui-wesplit/%E7%AE%80%E4%BB%8B/</guid><description>在这个项目中，我们将构建一个用于在餐厅吃饭的费用确认 app。 你可以输入你的食材成本，选择你想给多少小费，以及多少人用餐， app将告诉你每个人需要AA多少钱。
+这个项目不是尝试构建一个复杂的东西，因为它的真实目的是, 在一个真实世界项目中以有用的方式教你基本的SwiftUI, 如果你想进更进一步, 你可以扩展。
+你将学习基础的UI设计，如何让用户输入一个值以及选择一个选项， 并且如何跟踪程序状态。
+由于这是第一个项目，我们将顺利的慢慢进行，并且解释发生的一切 - 后面的项目将慢慢的增加速度， 但是现在我们需要轻松一点。
+这个项目 - 像是所有构建一个完整的应用程序应用的项目一样 - 分解为三个步骤：
+对你将要学习的技术进行实践性的介绍。 一步步的引导构建项目。 需要你自己完成的挑战，以进一步推动该项目。 每一步都非常重要，所以不要尝试去跳过任何一步。
+在第一步我们将学习创建独立的组件，然后你可以知道这些是如何独立工作的。
+这将有大量的代码，但是也会进行一些解释，这样你就可以看到一切是如何工作的。
+当前这一步是一个概览：下面是我们将要使用的东西，它们是如何工作的，以及如何使用它们。
+在第二步, 我们将讨论这些概念并且将其应用到真实项目当中。
+在这里，你将看到他们实际是如何工作的，但是你也将获取到更多到背景信息 - 为什么我们会想使用他们，以及如何使用更多到组件将他们组合到一起。
+总之, 是时候开始我们的第一个项目了，我们将要看看以下构建一个“费用确认”app所需要的技术，然后如何在真实项目使用它。
+所以, 现在启动Xcode，并且选择创建一个新的Xcode项目。
+你将看到一个显示列表，并且我想让你选择“单视图”(single view)的 iOS App，下一步，你需要做以下工作：
+给项目名称(Product Name)输入 “WeSplit”。 给组织标识(Organization Identifier)输入任意字符，但是如果你拥有一个站点，你应该反着输入： 比如 “hackingwithswift.com” 应该输入 “com.hackingwithswift”。如果你没有域名，编一个就好了。 确认语言一览选择的是 Swift。 用户界面请选择 SwiftUI。 请确保底部的复选框都没有被选中。 让我们开始把！
+References 本文翻译自 https://www.hackingwithswift.com/books/ios-swiftui. 感谢原作者 @twostraws.</description></item></channel></rss>
